@@ -5,7 +5,7 @@ document.querySelector("#hbspt-form-1746476489000-1525090073").innerHTML = `
     </header>
     <p>Click on the button below to contact us</p>
     <div class="header__links--contact" id='formStart'>
-        <a class="button" href="#">Click here</a>
+        <a class="button" id="showFormModal" href="#">Click here</a>
     </div>
 `;
 
@@ -31,3 +31,27 @@ dynamicModal.style.boxShadow = '0 0 0 100vmax rgba(0, 0, 0, 0)';
 dynamicModal.offsetHeight; // This line is necessary
 // Then apply the target shadow (with dim)
 dynamicModal.style.boxShadow = '0 0 0 100vmax rgba(0, 0, 0, .3)';
+
+// Modal implementation
+const dialog = document.createElement('dialog');
+dialog.innerHTML = `
+    <div class="modal">
+        <div class="modalContent">
+        <span class="close" id="closeButton">
+            <a class="button" id="closeButtonIcon" href="#">&times;</a>
+        </span>
+            <p>Some text in the Modal..</p>
+        </div>
+    </div>
+`;
+document.body.appendChild(dialog);
+
+document.querySelector('#showFormModal').addEventListener('click', () => {
+    dialog.showModal();
+})
+
+// Add event listener to close button
+const closeButton = document.querySelector('#closeButton');
+closeButton.addEventListener('click', () => {
+  dialog.close();
+});
