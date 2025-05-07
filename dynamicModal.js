@@ -149,6 +149,16 @@ style.innerHTML = `
         display: block;
     }
 
+    .step-label {
+        margin-left: 8px;
+        font-weight: normal;
+        transition: font-weight 0.2s ease;
+    }
+
+    .step-label.active {
+        font-weight: bold;
+    }
+
     input {
         border: 1px solid;
     }
@@ -244,6 +254,9 @@ dialog.innerHTML = `
                         />
                     </svg>
                 </div>
+                <span class="step-label">
+                    User Info
+                </span>
                 <div class="step-line"></div>
             </div>
             <div class="step-wrapper">
@@ -265,6 +278,9 @@ dialog.innerHTML = `
                         />
                     </svg>
                 </div>
+                <span class="step-label">
+                    Inquiry
+                </span>
                 <div class="step-line"></div>
             </div>
             <div class="step-wrapper">
@@ -296,6 +312,9 @@ dialog.innerHTML = `
                         />
                     </svg>
                 </div>
+                <span class="step-label">
+                    Complete
+                </span>
             </div>
         </div>
 
@@ -417,6 +436,11 @@ const showStep = (n) => {
 
     const nextBtn = dialog.querySelector("#nextBtn");
     const prevBtn = dialog.querySelector("#prevBtn");
+    const labelElements = dialog.querySelectorAll(".step-label");
+
+    labelElements.forEach((label, index) => {
+        label.classList.toggle("active", index === n);
+    });    
 
     prevBtn.style.display = n === 0 || n === steps.length - 1 ? "none" : "inline";
 
