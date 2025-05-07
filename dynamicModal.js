@@ -1,64 +1,99 @@
 // CSS styles
 const style = document.createElement("style");
 style.innerHTML = `
-  dialog::backdrop {
-    background: rgba(0, 0, 0, 0.4);
-    transition: background 0.4s ease;
-  }
-
-  dialog[open] {
-    animation: fadeIn 0.4s ease forwards;
-  }
-
-  dialog.closing {
-    animation: fadeOut 0.3s ease forwards;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: scale(0.9);
+    dialog::backdrop {
+        background: rgba(0, 0, 0, 0.4);
+        transition: background 0.4s ease;
     }
-    to {
-      opacity: 1;
-      transform: scale(1);
+
+    dialog[open] {
+        animation: fadeIn 0.4s ease forwards;
     }
-  }
 
-  @keyframes fadeOut {
-    from {
-      opacity: 1;
-      transform: scale(1);
+    dialog.closing {
+        animation: fadeOut 0.3s ease forwards;
     }
-    to {
-      opacity: 0;
-      transform: scale(0.9);
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
     }
-  }
 
-  .modalContent {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-  }
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+            transform: scale(1);
+        }
+        to {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+    }
 
-  .modal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100%;
-  }
+    .modalContent {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+    }
 
-  .close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-  }
+    .modal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100%;
+    }
+
+    .close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .hero-button {
+        font-size: 14px;
+        padding: 12px 24px;
+        color: white;
+        background-color: #4b8e3d; /* Regular green */
+        border: 2px solid #2e5c24;
+        box-shadow: 0px 0px 0 2px #2e5c24;
+        cursor: pointer;
+        outline: none;
+        text-transform: uppercase;
+        user-select: none;
+    }
+
+    .hero-button:hover {
+        background-color: #5da347; /* Hover green */
+    }
+
+    .hero-button:focus {
+        outline: 2px solid #66ccff; /* Blue focus ring */
+        outline-offset: 2px;
+    }
+
+    .hero-button:disabled {
+        background-color: #e7dcdc;
+        color: #aaa;
+        border-color: #c5b9b9;
+        box-shadow: none;
+        cursor: not-allowed;
+    }
+
+    .hero-button:active {
+        box-shadow: 1px 1px 0 #2e5c24;
+        transform: translate(2px, 2px);
+    }
 
   /* Make circles that indicate the steps of the form: */
-      .step {
+    .step {
         height: 15px;
         width: 15px;
         margin: 0 2px;
@@ -67,17 +102,17 @@ style.innerHTML = `
         border-radius: 50%;
         display: inline-block;
         opacity: 0.5;
-      }
+    }
 
       /* Mark the active step: */
-      .step.active {
+    .step.active {
         opacity: 1;
-      }
+    }
 
-      /* Mark the steps that are finished and valid: */
-      .step.finish {
+    /* Mark the steps that are finished and valid: */
+    .step.finish {
         background-color: #04aa6d;
-      }
+    }
 `;
 document.head.appendChild(style);
 
@@ -88,7 +123,7 @@ document.querySelector("#hbspt-form-1746555701000-3108487564").innerHTML = `
     </header>
     <p>Click on the button below to contact us</p>
     <div class="header__links--contact" id='formStart'>
-        <a class="button" id="showFormModal" href="#">Click here</a>
+        <a class="hero-button" id="showFormModal" href="#">Click here</a>
     </div>
 `;
 
