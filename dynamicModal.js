@@ -149,11 +149,34 @@ style.innerHTML = `
         display: block;
     }
 
+    input {
+        border: 1px solid;
+    }
+
+    textarea {
+        border: 1px solid;
+    }
+
+    input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        appearance: auto;
+        -webkit-appearance: checkbox;
+        margin-right: 8px;
+        border: none;
+    }
+
+    .hs-form-field {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        justify-content: space-evenly;
+    }
 `;
 document.head.appendChild(style);
 
 // Replace form and inject modal content
-document.querySelector("#hbspt-form-1746595647000-6812249169").innerHTML = `
+document.querySelector("#hbspt-form-1746635261000-1695140298").innerHTML = `
     <header>
         <h1>Hello Conversion!</h1>
     </header>
@@ -312,11 +335,12 @@ dialog.innerHTML = `
                         <input type="text" name="referral" placeholder="e.g., Google, LinkedIn" />
                     </div>
                     <div class="hs-form-field">
+                        <input type="checkbox" name="consent" />
                         <label>
-                            <input type="checkbox" name="consent" />
                             Yes, I would like to receive updates from Conversion.
                         </label>
                     </div>
+                    <br />
                     <div class="hs-form-field">
                     <p>
                         I agree to accept the
@@ -335,7 +359,7 @@ dialog.innerHTML = `
 
             <!-- Navigation buttons -->
             <div style="overflow:auto;margin-top:20px;">
-                <div style="float:right;">
+                <div style="display: flex; justify-content: space-between">
                     <button type="button" id="prevBtn">Previous</button>
                     <button type="button" id="nextBtn">Next</button>
                 </div>
