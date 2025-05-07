@@ -1,188 +1,3 @@
-// CSS styles
-const style = document.createElement("style");
-style.innerHTML = `
-    dialog::backdrop {
-        background: rgba(0, 0, 0, 0.4);
-        transition: background 0.4s ease;
-    }
-
-    dialog[open] {
-        animation: fadeIn 0.4s ease forwards;
-    }
-
-    dialog.closing {
-        animation: fadeOut 0.3s ease forwards;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: scale(0.9);
-        }
-        to {
-            opacity: 1;
-            transform: scale(1);
-        }
-    }
-
-    @keyframes fadeOut {
-        from {
-            opacity: 1;
-            transform: scale(1);
-        }
-        to {
-            opacity: 0;
-            transform: scale(0.9);
-        }
-    }
-
-    .modalContent {
-        background: white;
-        padding: 2rem;
-        border-radius: 8px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        transition: all 0.3s ease;
-    }
-
-    .modal {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100%;
-    }
-
-    .close {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-    }
-
-    .hero-button {
-        font-size: 14px;
-        padding: 12px 24px;
-        color: white;
-        background-color: #4b8e3d; /* Regular green */
-        border: 2px solid #2e5c24;
-        box-shadow: 0px 0px 0 2px #2e5c24;
-        cursor: pointer;
-        outline: none;
-        text-transform: uppercase;
-        user-select: none;
-    }
-
-    .hero-button:hover {
-        background-color: #5da347; /* Hover green */
-    }
-
-    .hero-button:focus {
-        outline: 2px solid #66ccff; /* Blue focus ring */
-        outline-offset: 2px;
-    }
-
-    .hero-button:disabled {
-        background-color: #e7dcdc;
-        color: #aaa;
-        border-color: #c5b9b9;
-        box-shadow: none;
-        cursor: not-allowed;
-    }
-
-    .hero-button:active {
-        box-shadow: 1px 1px 0 #2e5c24;
-        transform: translate(2px, 2px);
-    }
-
-    .step-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 20px 0;
-    }
-
-    .step-wrapper {
-        display: flex;
-        align-items: center;
-        position: relative;
-    }
-
-    .step-line {
-        width: 50px;
-        height: 3px;
-        background-color: #bbb;
-        transition: background-color 0.3s ease, width 0.4s ease;
-    }
-
-    .step-dot {
-        height: 35px;
-        width: 35px;
-        background-color: #bbb;
-        border-radius: 50%;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-    }
-
-    .step-dot.active {
-        background-color:rgb(0, 98, 255);
-    }
-
-    .step-dot.completed {
-        background-color:rgb(0, 98, 255);
-    }
-
-    .step-line.active {
-        background-color:rgb(0, 98, 255);
-    }
-
-    .step-checkmark {
-        position: absolute;
-        top: -4px;
-        right: -4px;
-        background: green;
-        border-radius: 50%;
-        padding: 2px;
-        display: none;
-    }
-    .step-dot.completed .step-checkmark {
-        display: block;
-    }
-
-    .step-label {
-        margin-left: 8px;
-        font-weight: normal;
-        transition: font-weight 0.2s ease;
-    }
-
-    .step-label.active {
-        font-weight: bold;
-    }
-
-    input {
-        border: 1px solid;
-    }
-
-    textarea {
-        border: 1px solid;
-    }
-
-    input[type="checkbox"] {
-        width: 16px;
-        height: 16px;
-        appearance: auto;
-        -webkit-appearance: checkbox;
-        margin-right: 8px;
-        border: none;
-    }
-
-    .hs-form-field {
-        display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-        justify-content: space-evenly;
-    }
-`;
 document.head.appendChild(style);
 
 // Replace form and inject modal content
@@ -518,3 +333,240 @@ const validateStep = () => {
 dialog.querySelector("#nextBtn").addEventListener("click", () => nextPrev(1));
 dialog.querySelector("#prevBtn").addEventListener("click", () => nextPrev(-1));
 showStep(currentStep);
+
+// CSS styles
+const style = document.createElement("style");
+style.innerHTML = `
+    dialog::backdrop {
+        background: rgba(0, 0, 0, 0.4);
+        transition: background 0.4s ease;
+    }
+
+    dialog[open] {
+        animation: fadeIn 0.4s ease forwards;
+    }
+
+    dialog.closing {
+        animation: fadeOut 0.3s ease forwards;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+            transform: scale(1);
+        }
+        to {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+    }
+
+    .modalContent {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    .modal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100%;
+    }
+
+    .close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .hero-button {
+        font-size: 14px;
+        padding: 12px 24px;
+        color: white;
+        background-color: #4b8e3d;
+        border: 2px solid #2e5c24;
+        box-shadow: 0px 0px 0 2px #2e5c24;
+        cursor: pointer;
+        outline: none;
+        text-transform: uppercase;
+        user-select: none;
+    }
+
+    .hero-button:hover {
+        background-color: #5da347; /* Hover green */
+    }
+
+    .hero-button:focus {
+        outline: 2px solid #66ccff; /* Blue focus ring */
+        outline-offset: 2px;
+    }
+
+    .hero-button:disabled {
+        background-color: #e7dcdc;
+        color: #aaa;
+        border-color: #c5b9b9;
+        box-shadow: none;
+        cursor: not-allowed;
+    }
+
+    .hero-button:active {
+        box-shadow: 1px 1px 0 #2e5c24;
+        transform: translate(2px, 2px);
+    }
+
+    .step-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+    }
+
+    .step-wrapper {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    .step-line {
+        width: 50px;
+        height: 3px;
+        background-color: #bbb;
+        transition: background-color 0.3s ease, width 0.4s ease;
+    }
+
+    .step-dot {
+        height: 35px;
+        width: 35px;
+        background-color: #bbb;
+        border-radius: 50%;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .step-dot.active {
+        background-color:rgb(0, 98, 255);
+    }
+
+    .step-dot.completed {
+        background-color:rgb(0, 98, 255);
+    }
+
+    .step-line.active {
+        background-color:rgb(0, 98, 255);
+    }
+
+    .step-checkmark {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        background: green;
+        border-radius: 50%;
+        padding: 2px;
+        display: none;
+    }
+    .step-dot.completed .step-checkmark {
+        display: block;
+    }
+
+    .step-label {
+        margin-left: 8px;
+        font-weight: normal;
+        transition: font-weight 0.2s ease;
+    }
+
+    .step-label.active {
+        font-weight: bold;
+    }
+
+    input {
+        border: 1px solid;
+    }
+
+    textarea {
+        border: 1px solid;
+    }
+
+    input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        appearance: auto;
+        -webkit-appearance: checkbox;
+        margin-right: 8px;
+        border: none;
+    }
+
+    .hs-form-field {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        justify-content: space-evenly;
+    }
+
+    @media (max-width: 375px) {
+    .modalContent {
+        width: 90vw;
+        padding: 1rem;
+    }
+
+    .step-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .step-wrapper {
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .step-line {
+        display: none;
+    }
+
+    .step-label {
+        font-size: 14px;
+    }
+
+    .form-columns-2 {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .hs-form-field {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .hero-button {
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    #prevBtn, #nextBtn {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+}
+`;
