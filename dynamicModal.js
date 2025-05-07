@@ -118,276 +118,91 @@ dynamicModal.style.boxShadow = "0 0 0 100vmax rgba(0, 0, 0, .3)";
 // Modal implementation
 const dialog = document.createElement("dialog");
 dialog.innerHTML = `
-    <div class="modal">
-      <div class="modalContent">
-        <span class="close" id="closeButton">
-          <a class="button" id="closeButtonIcon" href="#">&times;</a>
-        </span>
+  <div class="modal">
+    <div class="modalContent">
+      <span class="close" id="closeButton">
+        <a class="button" id="closeButtonIcon" href="#">&times;</a>
+      </span>
 
-        <form
-          id="hsForm_e259701f-aa68-4328-8ebf-013c47468869"
-          method="POST"
-          accept-charset="UTF-8"
-          enctype="multipart/form-data"
-          novalidate
-          action="https://forms-eu1.hsforms.com/submissions/v3/public/submit/formsnext/multipart/9358319/e259701f-aa68-4328-8ebf-013c47468869"
-          class="hs-form-private hsForm_e259701f-aa68-4328-8ebf-013c47468869 hs-form-e259701f-aa68-4328-8ebf-013c47468869 hs-form-e259701f-aa68-4328-8ebf-013c47468869_dd989707-6456-47c7-9191-d3ca942adf4d hs-form stacked"
-          target="target_iframe_e259701f-aa68-4328-8ebf-013c47468869"
-          data-instance-id="dd989707-6456-47c7-9191-d3ca942adf4d"
-          data-form-id="e259701f-aa68-4328-8ebf-013c47468869"
-          data-portal-id="9358319"
-          data-test-id="hsForm_e259701f-aa68-4328-8ebf-013c47468869"
-        >
-          <fieldset class="form-columns-2">
-            <div
-              class="hs_firstname hs-firstname hs-fieldtype-text field hs-form-field"
-            >
-              <label
-                id="label-firstname-e259701f-aa68-4328-8ebf-013c47468869"
-                class=""
-                placeholder="Enter your First name"
-                for="firstname-e259701f-aa68-4328-8ebf-013c47468869"
-                ><span>First name</span
-                ><span class="hs-form-required">*</span></label
-              >
-              <legend class="hs-field-desc" style="display: none"></legend>
-              <div class="input">
-                <input
-                  id="firstname-e259701f-aa68-4328-8ebf-013c47468869"
-                  name="firstname"
-                  required=""
-                  placeholder="First name"
-                  type="text"
-                  class="hs-input"
-                  inputmode="text"
-                  autocomplete="given-name"
-                  value=""
-                />
-              </div>
-            </div>
-            <div
-              class="hs_lastname hs-lastname hs-fieldtype-text field hs-form-field"
-            >
-              <label
-                id="label-lastname-e259701f-aa68-4328-8ebf-013c47468869"
-                class=""
-                placeholder="Enter your Last name"
-                for="lastname-e259701f-aa68-4328-8ebf-013c47468869"
-              >
-                <span>Last name</span>
-              </label>
-              <legend class="hs-field-desc" style="display: none"></legend>
-              <div class="input">
-                <input
-                  id="lastname-e259701f-aa68-4328-8ebf-013c47468869"
-                  name="lastname"
-                  placeholder="Last name"
-                  type="text"
-                  class="hs-input"
-                  inputmode="text"
-                  autocomplete="family-name"
-                  value=""
-                />
-              </div>
-            </div>
-          </fieldset>
-          <fieldset class="form-columns-1">
-            <div
-              class="hs_email hs-email hs-fieldtype-text field hs-form-field"
-            >
-              <label
-                id="label-email-e259701f-aa68-4328-8ebf-013c47468869"
-                class=""
-                placeholder="Enter your Work Email"
-                for="email-e259701f-aa68-4328-8ebf-013c47468869"
-                ><span>Work Email</span
-                ><span class="hs-form-required">*</span></label
-              >
-              <legend class="hs-field-desc" style="display: none"></legend>
-              <div class="input">
-                <input
-                  id="email-e259701f-aa68-4328-8ebf-013c47468869"
-                  name="email"
-                  required=""
-                  placeholder="Work email"
-                  type="email"
-                  class="hs-input"
-                  inputmode="email"
-                  autocomplete="email"
-                  value=""
-                />
-              </div>
-            </div>
-          </fieldset>
-          <fieldset class="form-columns-1">
-            <div
-              class="hs_how_can_we_help_you___contact_us_form_ hs-how_can_we_help_you___contact_us_form_ hs-fieldtype-textarea field hs-form-field"
-            >
-              <label
-                id="label-how_can_we_help_you___contact_us_form_-e259701f-aa68-4328-8ebf-013c47468869"
-                class=""
-                placeholder="Enter your How can we help you?&amp;#xa0;"
-                for="how_can_we_help_you___contact_us_form_-e259701f-aa68-4328-8ebf-013c47468869"
-                ><span>How can we help you?&nbsp;</span></label
-              >
-              <legend class="hs-field-desc" style="display: none"></legend>
-              <div class="input">
-                <textarea
-                  id="how_can_we_help_you___contact_us_form_-e259701f-aa68-4328-8ebf-013c47468869"
-                  class="hs-input hs-fieldtype-textarea"
-                  name="how_can_we_help_you___contact_us_form_"
-                  placeholder="Tell us more about how we can help "
-                ></textarea>
-              </div>
-            </div>
-          </fieldset>
-          <fieldset class="form-columns-1">
-            <div
-              class="hs_conversion__how_did_you_hear_about_us_ hs-conversion__how_did_you_hear_about_us_ hs-fieldtype-text field hs-form-field"
-            >
-              <label
-                id="label-conversion__how_did_you_hear_about_us_-e259701f-aa68-4328-8ebf-013c47468869"
-                class=""
-                placeholder="Enter your How did you hear about us?"
-                for="conversion__how_did_you_hear_about_us_-e259701f-aa68-4328-8ebf-013c47468869"
-                ><span>How did you hear about us?</span></label
-              >
-              <legend class="hs-field-desc" style="display: none"></legend>
-              <div class="input">
-                <input
-                  id="conversion__how_did_you_hear_about_us_-e259701f-aa68-4328-8ebf-013c47468869"
-                  name="conversion__how_did_you_hear_about_us_"
-                  placeholder=""
-                  type="text"
-                  class="hs-input"
-                  inputmode="text"
-                  value=""
-                />
-              </div>
-            </div>
-          </fieldset>
-          <fieldset class="form-columns-1">
-            <div class="legal-consent-container">
-              <div>
-                <div class="hs-dependent-field">
-                  <div
-                    class="hs_LEGAL_CONSENT.subscription_type_45081547 hs-LEGAL_CONSENT.subscription_type_45081547 hs-fieldtype-booleancheckbox field hs-form-field"
-                  >
-                    <legend
-                      class="hs-field-desc"
-                      style="display: none"
-                    ></legend>
-                    <div class="input">
-                      <ul class="inputs-list">
-                        <li class="hs-form-booleancheckbox">
-                          <label
-                            for="LEGAL_CONSENT.subscription_type_45081547-e259701f-aa68-4328-8ebf-013c47468869"
-                            class="hs-form-booleancheckbox-display"
-                            ><input
-                              id="LEGAL_CONSENT.subscription_type_45081547-e259701f-aa68-4328-8ebf-013c47468869"
-                              class="hs-input"
-                              type="checkbox"
-                              name="LEGAL_CONSENT.subscription_type_45081547"
-                              value="true"
-                            /><span>
-                              <p>
-                                Yes, I would like to receive updates and other
-                                information from Conversion.&nbsp;
-                              </p>
-                            </span></label
-                          >
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <legend
-                  class="hs-field-desc checkbox-desc"
-                  style="display: none"
-                ></legend>
-              </div>
-              <div class="hs-richtext">
-                <p>
-                  I agree to accept the
-                  <a
-                    href="https://conversion.com/privacy-policy/"
-                    target="_blank"
-                    rel="noopener"
-                    >Privacy Terms</a
-                  >
-                  relating to UK Data Protection Laws and GDPR.&nbsp;
-                </p>
-              </div>
-            </div>
-          </fieldset>
-          <div class="hs_recaptcha hs-recaptcha field hs-form-field">
-            <div class="input">
-              <div
-                class="grecaptcha-badge"
-                data-style="inline"
-                style="width: 256px; height: 60px; box-shadow: gray 0px 0px 5px"
-              >
-                <div class="grecaptcha-logo">
-                  <iframe
-                    title="reCAPTCHA"
-                    width="256"
-                    height="60"
-                    role="presentation"
-                    name="a-zbosbdvx6vax"
-                    frameborder="0"
-                    scrolling="no"
-                    sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation"
-                    src="https://www.google.com/recaptcha/enterprise/anchor?ar=1&amp;k=6Ld_ad8ZAAAAAAqr0ePo1dUfAi0m4KPkCMQYwPPm&amp;co=aHR0cHM6Ly9jb252ZXJzaW9uLmNvbTo0NDM.&amp;hl=en&amp;v=Hi8UmRMnhdOBM3IuViTkapUP&amp;size=invisible&amp;badge=inline&amp;cb=5dnondejvnp7"
-                  ></iframe>
-                </div>
-                <div class="grecaptcha-error"></div>
-                <textarea
-                  id="g-recaptcha-response-1"
-                  name="g-recaptcha-response"
-                  class="g-recaptcha-response"
-                  style="
-                    width: 250px;
-                    height: 40px;
-                    border: 1px solid rgb(193, 193, 193);
-                    margin: 10px 25px;
-                    padding: 0px;
-                    resize: none;
-                    display: none;
-                  "
-                ></textarea>
-              </div>
-              <iframe style="display: none"></iframe>
-            </div>
-            <input
-              type="hidden"
-              name="g-recaptcha-response"
-              id="hs-recaptcha-response"
-              value=""
-            />
-          </div>
-          <div class="hs_submit hs-submit">
-            <div class="hs-field-desc" style="display: none"></div>
-            <div class="actions">
-              <input
-                type="submit"
-                class="hs-button primary large"
-                value="Get In Touch"
-              />
-            </div>
-          </div>
-          <input
-            name="hs_context"
-            type="hidden"
-            value='{"embedAtTimestamp":"1746510417944","formDefinitionUpdatedAt":"1744657099498","lang":"en","legalConsentOptions":"{\"communicationConsentCheckboxes\":[{\"communicationTypeId\":45081547,\"label\":\"<p>Yes, I would like to receive updates and other information from Conversion.&amp;#xa0;</p>\",\"required\":false}],\"legitimateInterestLegalBasis\":\"LEGITIMATE_INTEREST_PQL\",\"processingConsentType\":\"IMPLICIT\",\"processingConsentText\":\"<p>I agree to accept the <a href=\\\"https://conversion.com/privacy-policy/\\\" target=\\\"_blank\\\" rel=\\\"noopener\\\">Privacy Terms</a> relating to UK Data Protection Laws and GDPR.&amp;#xa0;</p>\",\"processingConsentCheckboxLabel\":\"<p>I agree to allow Sideshow Group Ltd to store and process my personal data.</p>\",\"isLegitimateInterest\":false}","embedType":"REGULAR","clonedFromForm":"86c92f70-46c6-4f14-8d99-d68fe3304261","renderRawHtml":"true","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36","pageTitle":"Contact | Conversion","pageUrl":"https://conversion.com/contact/","isHubSpotCmsGeneratedPage":false,"formTarget":"#hbspt-form-1746555701000-3108487564","boolCheckBoxFields":"LEGAL_CONSENT.subscription_type_45081547","rumScriptExecuteTime":1848,"rumTotalRequestTime":2630.9000000059605,"rumTotalRenderTime":2677.2999999970198,"rumServiceResponseTime":782.9000000059605,"rumFormRenderTime":46.3999999910593,"connectionType":"4g","firstContentfulPaint":0,"largestContentfulPaint":0,"locale":"en","timestamp":1746510418673,"originalEmbedContext":{"portalId":"9358319","formId":"e259701f-aa68-4328-8ebf-013c47468869","region":"eu1","target":"#hbspt-form-1746555701000-3108487564","isBuilder":false,"isTestPage":false,"isPreview":false,"isMobileResponsive":true},"correlationId":"dd989707-6456-47c7-9191-d3ca942adf4d","renderedFieldsIds":["firstname","lastname","email","how_can_we_help_you___contact_us_form_","conversion__how_did_you_hear_about_us_","LEGAL_CONSENT.subscription_type_45081547"],"captchaStatus":"LOADED","emailResubscribeStatus":"NOT_APPLICABLE","isInsideCrossOriginFrame":false,"source":"forms-embed-1.8323","sourceName":"forms-embed","sourceVersion":"1.8323","sourceVersionMajor":"1","sourceVersionMinor":"8323","allPageIds":{},"_debug_embedLogLines":[{"clientTimestamp":1746510418518,"level":"INFO","message":"Retrieved pageContext values which may be overriden by the embed context: {\"pageTitle\":\"Contact | Conversion\",\"pageUrl\":\"https://conversion.com/contact/\",\"userAgent\":\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36\",\"isHubSpotCmsGeneratedPage\":false}"},{"clientTimestamp":1746510418518,"level":"INFO","message":"Retrieved countryCode property from normalized embed definition response: \"CA\""}]}'
-          />
-          <iframe
-            name="target_iframe_e259701f-aa68-4328-8ebf-013c47468869"
-            style="display: none"
-          ></iframe>
-        </form>
+      <div style="text-align:center;margin-top:20px;">
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
       </div>
+
+      <form id="hsForm" novalidate>
+        <!-- Step 1 -->
+        <div class="form-step step-1">
+          <fieldset class="form-columns-2">
+            <!-- First Name -->
+            <div class="hs-form-field">
+              <label>First name<span class="hs-form-required">*</span></label>
+              <input type="text" name="firstname" required placeholder="First name" />
+            </div>
+            <!-- Last Name -->
+            <div class="hs-form-field">
+              <label>Last name</label>
+              <input type="text" name="lastname" placeholder="Last name" />
+            </div>
+          </fieldset>
+          <fieldset class="form-columns-1">
+            <!-- Email -->
+            <div class="hs-form-field">
+              <label>Work Email<span class="hs-form-required">*</span></label>
+              <input type="email" name="email" required placeholder="Work email" />
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="form-step step-2" style="display:none;">
+          <fieldset class="form-columns-1">
+            <!-- Message -->
+            <div class="hs-form-field">
+              <label>How can we help you?</label>
+              <textarea name="help" placeholder="Tell us more about how we can help"></textarea>
+            </div>
+          </fieldset>
+          <fieldset class="form-columns-1">
+            <!-- Referral -->
+            <div class="hs-form-field">
+              <label>How did you hear about us?</label>
+              <input type="text" name="referral" placeholder="e.g., Google, LinkedIn" />
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="form-step step-3" style="display:none;">
+          <fieldset class="form-columns-1">
+            <!-- Checkbox -->
+            <div class="hs-form-field">
+              <label>
+                <input type="checkbox" name="consent" />
+                Yes, I would like to receive updates from Conversion.
+              </label>
+            </div>
+          </fieldset>
+          <div class="hs-form-field">
+            <p>
+              I agree to accept the
+              <a href="https://conversion.com/privacy-policy/" target="_blank">Privacy Terms</a>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Navigation buttons -->
+        <div style="overflow:auto;margin-top:20px;">
+          <div style="float:right;">
+            <button type="button" id="prevBtn">Previous</button>
+            <button type="button" id="nextBtn">Next</button>
+          </div>
+        </div>
+      </form>
     </div>
+  </div>
 `;
+
 document.body.appendChild(dialog);
 
 document.querySelector("#showFormModal").addEventListener("click", () => {
@@ -403,3 +218,52 @@ closeButton.addEventListener("click", () => {
     dialog.classList.remove("closing");
   }, 300); // Match fadeOut duration
 });
+
+let currentStep = 0;
+const steps = dialog.querySelectorAll(".form-step");
+const stepIndicators = dialog.querySelectorAll(".step");
+
+const showStep = (n) => {
+  steps.forEach((step, index) => {
+    step.style.display = index === n ? "block" : "none";
+    stepIndicators[index].classList.toggle("active", index === n);
+  });
+
+  dialog.querySelector("#prevBtn").style.display = n === 0 ? "none" : "inline";
+  const nextBtn = dialog.querySelector("#nextBtn");
+  nextBtn.textContent = n === steps.length - 1 ? "Submit" : "Next";
+};
+
+const nextPrev = (n) => {
+  if (n === 1 && !validateStep()) return;
+
+  currentStep += n;
+
+  if (currentStep >= steps.length) {
+    dialog.querySelector("#hsForm").submit();
+    return;
+  }
+
+  showStep(currentStep);
+};
+
+const validateStep = () => {
+  const fields = steps[currentStep].querySelectorAll("input, textarea");
+  let valid = true;
+
+  fields.forEach((field) => {
+    if (field.hasAttribute("required") && !field.value.trim()) {
+      field.style.borderColor = "red";
+      valid = false;
+    } else {
+      field.style.borderColor = "";
+    }
+  });
+
+  if (valid) stepIndicators[currentStep].classList.add("finish");
+  return valid;
+};
+
+dialog.querySelector("#nextBtn").addEventListener("click", () => nextPrev(1));
+dialog.querySelector("#prevBtn").addEventListener("click", () => nextPrev(-1));
+showStep(currentStep);
