@@ -347,11 +347,11 @@ dialog.innerHTML = `
                 <fieldset class="form-columns-1">
                     <div class="hs-form-field">
                         <label>How can we help you?</label>
-                        <textarea name="help" placeholder="Tell us more about how we can help"></textarea>
+                        <textarea name="help" placeholder="Tell us more about how we can help" required></textarea>
                     </div>
                     <div class="hs-form-field">
                         <label>How did you hear about us?</label>
-                        <input type="text" name="referral" placeholder="e.g., Google, LinkedIn" />
+                        <input type="text" name="referral" placeholder="e.g., Google, LinkedIn" required />
                     </div>
                     <div class="hs-form-field">
                         <input type="checkbox" name="consent" />
