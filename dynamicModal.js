@@ -184,55 +184,55 @@ style.innerHTML = `
     }
 
     @media (max-width: 375px) {
-    .modalContent {
-        width: 90vw;
-        padding: 1rem;
-    }
+        .modalContent {
+            width: 90vw;
+            padding: 1rem;
+        }
 
-    .step-container {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
+        .step-container {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
 
-    .step-wrapper {
-        flex-direction: row;
-        justify-content: flex-start;
-        width: 100%;
-    }
+        .step-wrapper {
+            flex-direction: row;
+            justify-content: flex-start;
+            width: 100%;
+        }
 
-    .step-line {
-        display: none;
-    }
+        .step-line {
+            display: none;
+        }
 
-    .step-label {
-        font-size: 14px;
-    }
+        .step-label {
+            font-size: 14px;
+        }
 
-    .form-columns-2 {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
+        .form-columns-2 {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-    .hs-form-field {
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-    }
+        .hs-form-field {
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
 
-    .hero-button {
-        width: 100%;
-        text-align: center;
-        font-size: 12px;
-        padding: 10px;
-    }
+        .hero-button {
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+            padding: 10px;
+        }
 
-    #prevBtn, #nextBtn {
-        font-size: 12px;
-        padding: 8px 12px;
+        #prevBtn, #nextBtn {
+            font-size: 12px;
+            padding: 8px 12px;
+        }
     }
-}
 `;
 document.head.appendChild(style);
 
