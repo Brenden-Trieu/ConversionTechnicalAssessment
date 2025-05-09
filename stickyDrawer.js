@@ -11,6 +11,10 @@ document.head.appendChild(gliderScript);
 // Add styles
 const style = document.createElement('style');
 style.textContent = `
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
   #bottomDrawer {
     position: fixed;
     bottom: 0;
@@ -74,6 +78,7 @@ style.textContent = `
   }
 
   .drawerSlide {
+    color: #000;
     position: relative;
     min-width: 280px;
     background: #f5f5f5;
@@ -84,7 +89,6 @@ style.textContent = `
     flex-shrink: 0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     text-align: center;
-    overflow: hidden;
   }
 
   .glider-prev, .glider-next {
@@ -132,10 +136,12 @@ style.textContent = `
 
   .flip-front {
     background: #f5f5f5;
+    color: #000;
   }
 
   .flip-back {
     background: #e0e0e0;
+    color: #000;
     transform: rotateY(180deg);
   }
 
@@ -187,7 +193,78 @@ style.textContent = `
       min-width: 196px;
     }
   }
-}
+
+  /* Responsive Layout */
+  @media (max-width: 767px) {
+    .glider-contain {
+      padding: 0 10px 20px;
+    }
+
+    .glider {
+      gap: 0.5rem; /* Adjust the space between slides */
+    }
+
+    .drawerSlide {
+      min-width: 90%;
+      margin-bottom: 10px;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .glider-contain {
+      padding: 0 20px 20px;
+    }
+
+    .glider {
+      gap: 1rem;
+    }
+
+    .drawerSlide {
+      min-width: 45%; /* Adjust slide size for tablet */
+      margin-bottom: 10px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .glider-contain {
+      padding: 0 20px 20px;
+    }
+
+    .glider {
+      gap: 1rem;
+    }
+
+    .drawerSlide {
+      min-width: 280px; /* Default slide size for desktop */
+      margin-bottom: 20px;
+    }
+  }
+
+  .tooltip {
+    visibility: hidden;
+    width: 220px;
+    background-color: #333 !important;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 10000;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    font-size: 13px;
+    pointer-events: none;
+  }
+
+  .drawerSlide:hover .tooltip {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: translateX(-50%) translateY(0);
+  }
+
 `;
 document.head.appendChild(style);
 
@@ -281,6 +358,7 @@ async function loadSlides() {
           </div>
         </div>
       </div>
+      <div class="tooltip">${flavorText}</div>
     `;
 
     const container = slide.querySelector('.flip-container');
@@ -294,31 +372,49 @@ async function loadSlides() {
   });
 
   // Wait for layout
-  setTimeout(() => {
-    const counter = drawer.querySelector('#gliderCounter');
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      const counter = drawer.querySelector('#gliderCounter');
 
-    const gliderSettings = {
-      slidesToShow: 4,
-      slidesToScroll: 4,
-      draggable: true,
-      arrows: {
-        prev: drawer.querySelector('.glider-prev'),
-        next: drawer.querySelector('.glider-next')
-      }
-    };
+      const gliderSettings = {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        draggable: true,
+        arrows: {
+          prev: drawer.querySelector('.glider-prev'),
+          next: drawer.querySelector('.glider-next')
+        },
+        responsive: [
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2
+            }
+          },
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 4,
+              slidesToScroll: 4
+            }
+          }
+        ]
+      };
 
-    const glider = new Glider(gliderTrack, gliderSettings);
+      const glider = new Glider(gliderTrack, gliderSettings);
 
-    const totalSlides = glider.slides.length;
-    const totalPages = Math.ceil(totalSlides / glider.opt.slidesToScroll);
-    counter.textContent = `Page 1 of ${totalPages}`;
+      const totalSlides = glider.slides.length;
+      const totalPages = Math.ceil(totalSlides / glider.opt.slidesToScroll);
+      counter.textContent = `Page 1 of ${totalPages}`;
 
-    const gliderContain = drawer.querySelector('.glider-contain');
-    gliderContain.addEventListener('glider-slide-visible', function (event) {
-      const currentPage = Math.floor(event.detail.slide / glider.opt.slidesToScroll) + 1;
-      counter.textContent = `Page ${currentPage} of ${totalPages}`;
-    });
-  }, 0);
+      const gliderContain = drawer.querySelector('.glider-contain');
+      gliderContain.addEventListener('glider-slide-visible', function (event) {
+        const currentPage = Math.floor(event.detail.slide / glider.opt.slidesToScroll) + 1;
+        counter.textContent = `Page ${currentPage} of ${totalPages}`;
+      });
+    }, 0);
+  });
 }
 
 
