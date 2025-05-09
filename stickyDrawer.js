@@ -80,7 +80,6 @@ style.textContent = `
   .drawerSlide {
     color: #000;
     position: relative;
-    min-width: 280px;
     background: #f5f5f5;
     padding: 16px;
     padding-bottom: 40px;
@@ -201,11 +200,11 @@ style.textContent = `
     }
 
     .glider {
-      gap: 0.5rem; /* Adjust the space between slides */
+      gap: 0.5rem;
     }
 
     .drawerSlide {
-      min-width: 90%;
+      width: 90%;
       margin-bottom: 10px;
     }
   }
@@ -220,7 +219,7 @@ style.textContent = `
     }
 
     .drawerSlide {
-      min-width: 45%; /* Adjust slide size for tablet */
+      width: 45%;
       margin-bottom: 10px;
     }
   }
@@ -235,7 +234,7 @@ style.textContent = `
     }
 
     .drawerSlide {
-      min-width: 280px; /* Default slide size for desktop */
+      width: 280px;
       margin-bottom: 20px;
     }
   }
@@ -264,7 +263,6 @@ style.textContent = `
     opacity: 1 !important;
     transform: translateX(-50%) translateY(0);
   }
-
 `;
 document.head.appendChild(style);
 
