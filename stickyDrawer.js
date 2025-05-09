@@ -213,6 +213,17 @@ drawer.innerHTML = `
 `;
 document.body.appendChild(drawer);
 
+window.addEventListener('scroll', () => {
+  const scrollPosition = window.scrollY + window.innerHeight;
+  const documentHeight = document.documentElement.scrollHeight;
+
+  // If scrolled to the bottom and drawer is open, close it
+  if (scrollPosition >= documentHeight - 2 && drawer.classList.contains('open')) {
+    drawer.classList.remove('open');
+    console.log('Drawer closed on scroll to bottom');
+  }
+});
+
 // Toggle behavior
 const toggleBtn = drawer.querySelector('#drawerToggle');
 toggleBtn.addEventListener('click', (e) => {
@@ -283,33 +294,31 @@ async function loadSlides() {
   });
 
   // Wait for layout
-  requestAnimationFrame(() => {
-    setTimeout(() => {
-      const counter = drawer.querySelector('#gliderCounter');
+  setTimeout(() => {
+    const counter = drawer.querySelector('#gliderCounter');
 
-      const gliderSettings = {
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        draggable: true,
-        arrows: {
-          prev: drawer.querySelector('.glider-prev'),
-          next: drawer.querySelector('.glider-next')
-        }
-      };
+    const gliderSettings = {
+      slidesToShow: 4,
+      slidesToScroll: 4,
+      draggable: true,
+      arrows: {
+        prev: drawer.querySelector('.glider-prev'),
+        next: drawer.querySelector('.glider-next')
+      }
+    };
 
-      const glider = new Glider(gliderTrack, gliderSettings);
+    const glider = new Glider(gliderTrack, gliderSettings);
 
-      const totalSlides = glider.slides.length;
-      const totalPages = Math.ceil(totalSlides / glider.opt.slidesToScroll);
-      counter.textContent = `Page 1 of ${totalPages}`;
+    const totalSlides = glider.slides.length;
+    const totalPages = Math.ceil(totalSlides / glider.opt.slidesToScroll);
+    counter.textContent = `Page 1 of ${totalPages}`;
 
-      const gliderContain = drawer.querySelector('.glider-contain');
-      gliderContain.addEventListener('glider-slide-visible', function (event) {
-        const currentPage = Math.floor(event.detail.slide / glider.opt.slidesToScroll) + 1;
-        counter.textContent = `Page ${currentPage} of ${totalPages}`;
-      });
-    }, 0);
-  });
+    const gliderContain = drawer.querySelector('.glider-contain');
+    gliderContain.addEventListener('glider-slide-visible', function (event) {
+      const currentPage = Math.floor(event.detail.slide / glider.opt.slidesToScroll) + 1;
+      counter.textContent = `Page ${currentPage} of ${totalPages}`;
+    });
+  }, 0);
 }
 
 
