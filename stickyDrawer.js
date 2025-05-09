@@ -33,12 +33,16 @@ style.textContent = `
   }
 
   #drawerToggle {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
     background: #007bff;
     color: white;
     padding: 20px;
     cursor: pointer;
     font-size: 18px;
+    position: relative;
   }
 
   #chevron {
@@ -61,6 +65,12 @@ style.textContent = `
   .glider {
     display: flex;
     gap: 1rem;
+  }
+
+  #gliderCounter {
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
   }
 
   .drawerSlide {
@@ -86,6 +96,14 @@ style.textContent = `
     padding: 5px 10px;
     border-radius: 4px;
     margin: 10px;
+  }
+
+  .glider-next {
+    margin-right: 20px;
+  }
+
+  .glider-prev {
+    margin-left: 20px;
   }
 
   .flip-container {
@@ -183,12 +201,13 @@ drawer.id = 'bottomDrawer';
 drawer.innerHTML = `
   <div id="drawerToggle">
     <span id="chevron">&#9650;</span>
+    <button class="glider-prev" aria-label="Previous">&laquo;</button>
+    <span id="gliderCounter">Page 1 of ?</span>
+    <button class="glider-next" aria-label="Next">&raquo;</button>
   </div>
   <div id="drawerContent">
     <div class="glider-contain">
-      <button class="glider-prev" aria-label="Previous">&laquo;</button>
       <div class="glider"></div>
-      <button class="glider-next" aria-label="Next">&raquo;</button>
     </div>
   </div>
 `;
@@ -196,9 +215,12 @@ document.body.appendChild(drawer);
 
 // Toggle behavior
 const toggleBtn = drawer.querySelector('#drawerToggle');
-toggleBtn.addEventListener('click', () => {
-  drawer.classList.toggle('open');
-  console.log('Drawer is now', drawer.classList.contains('open') ? 'open' : 'closed');
+toggleBtn.addEventListener('click', (e) => {
+  const isArrow = e.target.closest('.glider-prev, .glider-next');
+  if (!isArrow) {
+    drawer.classList.toggle('open');
+    console.log('Drawer is now', drawer.classList.contains('open') ? 'open' : 'closed');
+  }
 });
 
 // Fetch data function
@@ -212,13 +234,21 @@ async function dataFetch(url) {
 
 // Load and display slides
 async function loadSlides() {
-  const listOfData = await dataFetch('https://pokeapi.co/api/v2/pokemon?limit=20&offset=983');
-  const urls = listOfData.results.map(item => item.url);
   const gliderTrack = drawer.querySelector('.glider');
 
-  for (const url of urls) {
-    const pokemonData = await dataFetch(url); // sprite, etc.
-    const speciesData = await dataFetch(pokemonData.species.url); // flavor text
+  // Fetch list of Pokémon
+  const listOfData = await dataFetch('https://pokeapi.co/api/v2/pokemon?limit=20&offset=983');
+  const urls = listOfData.results.map(item => item.url);
+
+  // Fetch all Pokémon details
+  const pokemonResults = await Promise.all(urls.map(async url => {
+    const pokemonData = await dataFetch(url);
+    const speciesData = await dataFetch(pokemonData.species.url);
+    return { pokemonData, speciesData };
+  }));
+
+  // Build slide elements
+  pokemonResults.forEach(({ pokemonData, speciesData }) => {
     const flavorText = speciesData.flavor_text_entries.find(entry => entry.language.name === 'en')?.flavor_text || 'No description available.';
 
     const slide = document.createElement('div');
@@ -243,28 +273,47 @@ async function loadSlides() {
     `;
 
     const container = slide.querySelector('.flip-container');
-    const buttons = slide.querySelectorAll('.flipCard');
-    buttons.forEach(btn => {
+    slide.querySelectorAll('.flipCard').forEach(btn => {
       btn.addEventListener('click', () => {
         container.classList.toggle('flipped');
       });
     });
 
     gliderTrack.appendChild(slide);
-  }
+  });
 
-  // Initialize Glider after all slides are added
-  new Glider(gliderTrack, {
-    slidesToShow: 4,
-    slidesToScroll: 3,
-    draggable: true,
-    arrows: {
-      prev: drawer.querySelector('.glider-prev'),
-      next: drawer.querySelector('.glider-next')
-    }
+  // Wait for layout
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      const counter = drawer.querySelector('#gliderCounter');
+
+      const gliderSettings = {
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        draggable: true,
+        arrows: {
+          prev: drawer.querySelector('.glider-prev'),
+          next: drawer.querySelector('.glider-next')
+        }
+      };
+
+      const glider = new Glider(gliderTrack, gliderSettings);
+
+      const totalSlides = glider.slides.length;
+      const totalPages = Math.ceil(totalSlides / glider.opt.slidesToScroll);
+      counter.textContent = `Page 1 of ${totalPages}`;
+
+      const gliderContain = drawer.querySelector('.glider-contain');
+      gliderContain.addEventListener('glider-slide-visible', function (event) {
+        const currentPage = Math.floor(event.detail.slide / glider.opt.slidesToScroll) + 1;
+        counter.textContent = `Page ${currentPage} of ${totalPages}`;
+      });
+    }, 0);
   });
 }
 
-loadSlides();
 
+gliderScript.onload = () => {
+  loadSlides();
+};
 
