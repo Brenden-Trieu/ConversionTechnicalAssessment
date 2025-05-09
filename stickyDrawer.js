@@ -64,14 +64,17 @@ style.textContent = `
   }
 
   .drawerSlide {
+    position: relative;
     min-width: 280px;
     background: #f5f5f5;
     padding: 16px;
+    padding-bottom: 40px;
     margin-bottom: 20px;
     border-radius: 8px;
     flex-shrink: 0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     text-align: center;
+    overflow: hidden;
   }
 
   .glider-prev, .glider-next {
