@@ -129,44 +129,34 @@ async function loadSlides() {
   const gliderTrack = drawer.querySelector('.glider');
 
   for (const url of urls) {
+    const pokemonData = await dataFetch(url); // has sprite
+    const speciesData = await dataFetch(pokemonData.species.url); // has flavor text, etc.
+
+    const flavorText = speciesData.flavor_text_entries.find(
+      entry => entry.language.name === 'en'
+    )?.flavor_text || 'No description available.';
+
     const slide = document.createElement('div');
     slide.className = 'drawerSlide';
-    slide.innerHTML = `<h3>Loading...</h3>`;
-    gliderTrack.appendChild(slide);
-
-    const data = await dataFetch(url);
     slide.innerHTML = `
-      <h3>${data.name}</h3>
-      <img src="${data.sprites.front_default}" alt="${data.name}" width="100" />
+      <h3>${pokemonData.name}</h3>
+      <p>${flavorText}</p>
+      <img src="${pokemonData.sprites.front_default}" alt="${pokemonData.name}" width="100" />
     `;
+    gliderTrack.appendChild(slide);
   }
 
-  // Initialize Glider after content loads
+  // Initialize Glider after all slides are added
   new Glider(gliderTrack, {
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 3,
     draggable: true,
     arrows: {
       prev: drawer.querySelector('.glider-prev'),
       next: drawer.querySelector('.glider-next')
-    },
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 3
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+    }
   });
 }
+
 
 loadSlides();
